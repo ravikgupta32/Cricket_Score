@@ -69,7 +69,7 @@ namespace Cricket_Score.Controllers
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                var query = "SELECT * information WHERE Id = @Id";
+                var query = "SELECT * from information WHERE Id = @Id";
                 using (var command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Id", id);
@@ -108,18 +108,19 @@ namespace Cricket_Score.Controllers
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                var query = "INSERT INTO information (Team1, Team2, Score) VALUES (@Team1, @Team2, @Score); SELECT CAST(SCOPE_IDENTITY() AS INT);";
+                var query = "INSERT INTO information (Id,Team1, Team2, Score) VALUES (@Id,@Team1, @Team2, @Score);";
                 using (var command = new SqlCommand(query, connection))
                 {
+                    command.Parameters.AddWithValue("@Id", score.Id);
                     command.Parameters.AddWithValue("@Team1", score.Team1);
                     command.Parameters.AddWithValue("@Team2", score.Team2);
                     command.Parameters.AddWithValue("@Score", score.Score);
-                    // Add other parameters as needed
+                    
 
 
 
-                    var insertedId = (int)command.ExecuteScalar();
-                    score.Id = insertedId;
+                    
+                
 
 
 
