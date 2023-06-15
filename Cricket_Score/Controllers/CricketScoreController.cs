@@ -1,4 +1,5 @@
 ﻿using Cricket_Score.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -20,7 +21,7 @@ namespace Cricket_Score.Controllers
 
 
 
-        
+        [Authorize]
         [HttpGet]
         public ActionResult<IEnumerable<CricketScore>> Get()
         {
@@ -63,6 +64,7 @@ namespace Cricket_Score.Controllers
 
 
         // GET: api/cricketscore/{id}
+        [Authorize]
         [HttpGet("{id}")]
         public ActionResult<CricketScore> Get(int id)
         {
@@ -102,6 +104,7 @@ namespace Cricket_Score.Controllers
 
 
         // POST: api/cricketscore
+        [Authorize]
         [HttpPost]
         public ActionResult<CricketScore> Post(CricketScore score)
         {
@@ -132,6 +135,7 @@ namespace Cricket_Score.Controllers
 
 
         // PUT: api/cricketscore/{id}
+        [Authorize]
         [HttpPut("{id}")]
         public ActionResult<CricketScore> Put(int id, CricketScore updatedScore)
         {
@@ -145,7 +149,7 @@ namespace Cricket_Score.Controllers
                     command.Parameters.AddWithValue("@Team1", updatedScore.Team1);
                     command.Parameters.AddWithValue("@Team2", updatedScore.Team2);
                     command.Parameters.AddWithValue("@Score", updatedScore.Score);
-                    // Add other parameters as needed
+                    
 
 
 
@@ -166,6 +170,7 @@ namespace Cricket_Score.Controllers
 
 
         // DELETE: api/cricketscore/{id}
+        [Authorize]
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
