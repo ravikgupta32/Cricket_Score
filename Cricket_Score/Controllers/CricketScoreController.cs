@@ -118,18 +118,10 @@ namespace Cricket_Score.Controllers
                     command.Parameters.AddWithValue("@Team1", score.Team1);
                     command.Parameters.AddWithValue("@Team2", score.Team2);
                     command.Parameters.AddWithValue("@Score", score.Score);
-                    
-
-
-
-                    
-                
-
-
-
-                    return CreatedAtAction(nameof(Get), new { id = score.Id }, score);
+                    command.ExecuteNonQuery();
                 }
             }
+            return Ok();
         }
 
 
